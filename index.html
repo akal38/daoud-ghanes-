@@ -16,29 +16,22 @@
       background: radial-gradient(circle at top, #1f0033, #000000);
       color: white;
       text-align: center;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
-    .welcome {
+    .welcome, .welcome2 {
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 3em;
+      font-size: 2.8em;
       color: #00ffff;
       text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
-      animation: fadeOut 3s forwards;
-    }
-
-    @keyframes fadeOut {
-      0% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { opacity: 0; visibility: hidden; }
     }
 
     .main-content {
       display: none;
-      padding: 40px;
+      padding: 40px 20px;
       animation: fadeIn 1.5s ease-in-out;
     }
 
@@ -82,6 +75,7 @@
     #surprise-img {
       margin-top: 30px;
       max-width: 100%;
+      height: auto;
       display: none;
       border: 5px solid #00ffee;
       border-radius: 20px;
@@ -104,9 +98,14 @@
 </head>
 <body>
 
-  <!-- واجهة الترحيب -->
-  <div class="welcome" id="welcome">
+  <!-- الرسالة الترحيبية 1 -->
+  <div class="welcome" id="welcome1">
     مرحبًا بك ياا داود غانس 🤩🔥
+  </div>
+
+  <!-- الرسالة الترحيبية 2 -->
+  <div class="welcome2" id="welcome2" style="display: none;">
+    سلملي على ترميين إيمان 😂
   </div>
 
   <!-- المحتوى الرئيسي -->
@@ -123,7 +122,6 @@
       <button class="button" onclick="showSurprise()">🎁 مفاجأة</button>
 
       <img id="surprise-img" src="photo_2025-07-11_22-35-47.jpg" alt="مفاجأة داود">
-
       <div id="surprise-text">نتمنالك تنبتلك اللحية يا عمود الزڨ 😜</div>
 
       <div class="footer">
@@ -133,13 +131,20 @@
   </div>
 
   <script>
-    // بعد 3 ثوانٍ، نخفي الترحيب ونظهر المحتوى
+    // عرض الرسالة الثانية بعد الأولى
     setTimeout(() => {
-      document.getElementById("welcome").style.display = "none";
-      document.getElementById("content").style.display = "block";
+      document.getElementById("welcome1").style.display = "none";
+      document.getElementById("welcome2").style.display = "flex";
     }, 3000);
 
-    // إظهار المفاجأة (الصورة والنص)
+    // عرض المحتوى بعد الرسالة الثانية
+    setTimeout(() => {
+      document.getElementById("welcome2").style.display = "none";
+      document.getElementById("content").style.display = "block";
+      document.body.style.overflowY = "auto"; // السماح بالتمرير
+    }, 6000);
+
+    // عند الضغط على زر المفاجأة
     function showSurprise() {
       document.getElementById("surprise-img").style.display = "block";
       document.getElementById("surprise-text").style.display = "block";
